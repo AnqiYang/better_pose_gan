@@ -89,10 +89,16 @@ class DataLoader2:
                 return img, heatmap, dilatedMapofAllPoints
 
     def next_batch(self, batch_size, trainorval):
-        conditional_image = np.zeros([batch_size, 128, 64, 3])
-        target_pose = np.zeros([batch_size, 128, 64, 18])
-        target_image = np.zeros([batch_size, 128, 64, 3])
-        target_morphologicals = np.zeros([batch_size, 128, 64])
+        if self.dataset == 'market':
+            conditional_image = np.zeros([batch_size, 128, 64, 3])
+            target_pose = np.zeros([batch_size, 128, 64, 18])
+            target_image = np.zeros([batch_size, 128, 64, 3])
+            target_morphologicals = np.zeros([batch_size, 128, 64])
+        else:
+            conditional_image = np.zeros([batch_size, 256, 256, 3])
+            target_pose = np.zeros([batch_size, 256, 256, 18])
+            target_image = np.zeros([batch_size, 256, 256, 3])
+            target_morphologicals = np.zeros([batch_size, 256, 256])
 
         pairstofeed = None
         if trainorval == 'TRAIN':
