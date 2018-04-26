@@ -46,8 +46,12 @@ class DataLoader2:
             if img is not None:
                 img = np.expand_dims(img, axis=0)
                 # process the keypoint thing
-                heatmap = np.zeros([128, 64, 18])  # (of original image)
-                mapofAllPoints = np.zeros([128, 64])
+                if self.dataset == 'market':
+                    heatmap = np.zeros([128, 64, 18])  # (of original image)
+                    mapofAllPoints = np.zeros([128, 64])
+                else:
+                    heatmap = np.zeros([256, 256, 18])  # (of original image)
+                    mapofAllPoints = np.zeros([256, 256])
 
                 # process the stored keypoints
                 keypointfileDir = fulldir + 'keypoints'
@@ -61,8 +65,13 @@ class DataLoader2:
                         if len(keypoint) != 0:  # a non-empty keypoint is a
                             # list consists of one and only one tuple.
                             availablePoints.append(i)
-                            heatmap[:, :, i] = cv2.circle(np.zeros([128, 64]),
-                                                          (keypoint[0][0], keypoint[0][1]), 4, 255, -1)
+                            if self.dataset == 'market':
+                                heatmap[:, :, i] = cv2.circle(np.zeros([128, 64]),
+                                                              (keypoint[0][0], keypoint[0][1]), 4, 255, -1)
+                            else:
+                                heatmap[:, :, i] = cv2.circle(np.zeros([256, 256]),
+                                                              (keypoint[0][0], keypoint[0][1]), 4, 255, -1)
+
                             cv2.circle(mapofAllPoints, (keypoint[0][0], keypoint[0][1]), 4, 255, -1)
 
                             # link the lines
