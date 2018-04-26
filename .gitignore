@@ -1,0 +1,17 @@
+# ignore all datasets
+/dataset
+/result_dataset_market
+/result_dataset_panoptic
+/poseCropImgs
+/poseCropImgs.tar.gz
+
+# ignore all result
+/result
+
+# ignore all logs
+/logs*
+
+# other
+google_drive.py
+*.txt
+/tmp
