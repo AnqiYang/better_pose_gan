@@ -5,8 +5,8 @@ cfg = ed()
 
 cfg.IMAGE_SHAPE = [256, 256, 3]  #todo: change back
 cfg.G1_INPUT_DATA_SHAPE = cfg.IMAGE_SHAPE[:2] + [21]
-cfg.BATCH_SIZE = 8
-cfg.BATCH_SIZE_G2D = 8
+cfg.BATCH_SIZE = 4
+cfg.BATCH_SIZE_G2D = 4
 cfg.N = 6  # number of residual blocks
 cfg.WEIGHT_DECAY = 1e-4
 cfg.LAMBDA = 10
